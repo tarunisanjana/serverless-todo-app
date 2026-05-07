@@ -24,30 +24,84 @@ function App() {
     });
 
     const newTodo = await res.json();
+
     setTodos([...todos, newTodo]);
     setText("");
   };
+
+  // Delete todo
+  const deleteTodo = async (id) => {
+    await fetch(`http://localhost:5000/todos/${id}`, {
+      method: "DELETE",
+    });
+
+    setTodos(todos.filter((todo) => todo._id !== id));
+  };
+
+  const toggleComplete = async (id) => {
+
+  const res = await fetch(`http://localhost:5000/todos/${id}`, {
+    method: "PUT",
+  });
+
+  const updatedTodo = await res.json();
+
+  setTodos(
+    todos.map((todo) =>
+      todo._id === id ? updatedTodo : todo
+    )
+  );
+};
 
   return (
     <div className="app">
       <h1>To-Do App</h1>
 
-      <input
-  value={text}
-  onChange={(e) => setText(e.target.value)}
-  onKeyDown={(e) => {
-    if (e.key === "Enter") {
-      addTodo();
-    }
-  }}
-  placeholder="Enter todo"
-/>
+      <div className="input-container">
+        <input
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              addTodo();
+            }
+          }}
+          placeholder="Enter a task"
+        />
 
-      <button onClick={addTodo}>Add</button>
+        <button onClick={addTodo}>Add</button>
+      </div>
 
       <ul>
         {todos.map((todo) => (
-          <li key={todo._id}>{todo.text}</li>
+          <li className="todo-item" key={todo._id}>
+
+  <div className="todo-left">
+
+    <input
+      type="checkbox"
+      checked={todo.completed}
+      onChange={() => toggleComplete(todo._id)}
+    />
+
+    <span
+      className={
+        todo.completed ? "completed" : ""
+      }
+    >
+      {todo.text}
+    </span>
+
+  </div>
+
+  <button
+    className="delete-btn"
+    onClick={() => deleteTodo(todo._id)}
+  >
+    Delete
+  </button>
+
+</li>
         ))}
       </ul>
     </div>

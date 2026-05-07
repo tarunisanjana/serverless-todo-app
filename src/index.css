@@ -1,63 +1,93 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f4f6f8;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  background: #f4f6f8;
 }
 
 .app {
+  max-width: 500px;
+  margin: 80px auto;
   background: white;
   padding: 30px;
-  border-radius: 12px;
-  width: 400px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-  margin-bottom: 20px;
   text-align: center;
-  color: #333;
+  color: #222;
+  margin-bottom: 25px;
 }
 
 .input-container {
   display: flex;
   gap: 10px;
+  margin-bottom: 25px;
 }
 
 input {
   flex: 1;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 16px;
 }
 
+input:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
 button {
-  padding: 10px 16px;
+  padding: 12px 18px;
   border: none;
-  background-color: #4f46e5;
+  background: #4a90e2;
   color: white;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 15px;
+  transition: 0.2s;
 }
 
 button:hover {
-  background-color: #4338ca;
+  background: #357abd;
 }
 
 ul {
   list-style: none;
   padding: 0;
-  margin-top: 20px;
 }
 
 li {
-  background: #f1f5f9;
-  padding: 10px;
+  background: #f7f9fb;
+  margin-bottom: 12px;
+  padding: 14px;
   border-radius: 8px;
-  margin-bottom: 10px;
+  border-left: 5px solid #4a90e2;
+  font-size: 16px;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-btn {
+  background: #ef4444;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+}
+
+.todo-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: gray;
 }
