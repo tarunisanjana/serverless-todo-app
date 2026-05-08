@@ -6,7 +6,7 @@ function App() {
 
   // Fetch todos
   useEffect(() => {
-    fetch("http://localhost:5000/todos")
+    fetch("https://serverless-todo-app.onrender.com/todos")
       .then((res) => res.json())
       .then((data) => setTodos(data));
   }, []);
@@ -15,7 +15,7 @@ function App() {
   const addTodo = async () => {
     if (!text) return;
 
-    const res = await fetch("http://localhost:5000/todos", {
+    const res = await fetch("https://serverless-todo-app.onrender.com/todos", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -31,7 +31,7 @@ function App() {
 
   // Delete todo
   const deleteTodo = async (id) => {
-    await fetch(`http://localhost:5000/todos/${id}`, {
+    await fetch(`https://serverless-todo-app.onrender.com/todos/${id}`, {
       method: "DELETE",
     });
 
@@ -40,7 +40,7 @@ function App() {
 
   const toggleComplete = async (id) => {
 
-  const res = await fetch(`http://localhost:5000/todos/${id}`, {
+  const res = await fetch(`https://serverless-todo-app.onrender.com/todos/${id}`, {
     method: "PUT",
   });
 
